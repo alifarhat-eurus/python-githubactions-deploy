@@ -1,0 +1,20 @@
+name: Manual Workflow Approval
+
+on:
+  workflow_run:
+    workflows: ["Build, Test, and Deploy"]
+    types:
+      - completed
+
+jobs:
+  approval:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Manual Approval
+        uses: trstringer/manual-approval@v1
+        with:
+          secret:  ${{ github.TOKEN }}
+          approvers:  alifarhat-eurus, NoumanAshraf0
