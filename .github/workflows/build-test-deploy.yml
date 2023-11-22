@@ -53,6 +53,6 @@ jobs:
         uses: trstringer/manual-approval@v1
         with:
           secret:  ${{ github.TOKEN }}
-          approvers: 
+          approvers: user1
           exclude-workflow-initiator-as-approver: false
           minimum-approvals: 1   
