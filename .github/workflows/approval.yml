@@ -17,6 +17,6 @@ jobs:
         uses: trstringer/manual-approval@v1
         with:
           secret:  ${{ github.TOKEN }}
-          approvers:  alifarhat-eurus-dev
+          approvers:  NoumanAshraf0
           exclude-workflow-initiator-as-approver: false
           minimum-approvals: 1
