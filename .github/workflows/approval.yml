@@ -18,3 +18,5 @@ jobs:
         with:
           secret:  ${{ github.TOKEN }}
           approvers:  alifarhat-eurus,NoumanAshraf0
+          exclude-workflow-initiator-as-approver: false
+          minimum-approvals: 1
