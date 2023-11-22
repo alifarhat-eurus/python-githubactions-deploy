@@ -38,6 +38,11 @@ jobs:
     needs: build-test
     runs-on: ubuntu-latest
     environment: production
+    
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+    
 
     strategy:
       matrix:
@@ -49,4 +54,4 @@ jobs:
 
       - name: Deploy to Environment
         run: echo "Deploying to ${{ matrix.environment }} environment"
-          
+
