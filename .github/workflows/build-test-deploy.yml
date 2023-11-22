@@ -10,6 +10,10 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
 
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
     strategy:
       matrix:
         python-version: [3.7, 3.8, 3.9]
@@ -38,7 +42,7 @@ jobs:
     needs: build-test
     runs-on: ubuntu-latest
     environment: production
-    
+
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: true
