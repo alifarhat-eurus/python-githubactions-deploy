@@ -8,18 +8,24 @@ on:
         required: true
 
 jobs:
-  deploy-production:
-    needs: build-test
-    runs-on: ubuntu-latest
-    environment: production
+    deploy-production:
+        runs-on: ubuntu-latest
+        environment: production
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v2
+      
+            - name: Deploy to Environment
+              run: echo "Deploying to production environment"
+      
+          
 
-   steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    
+  
+    
+    
+    
 
-      - name: Deploy to Environment
-        run: echo "Deploying to production environment"
-
-
+   
 
                 
