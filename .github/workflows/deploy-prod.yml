@@ -1,0 +1,25 @@
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "deploy to prod"
+        required: true
+
+jobs:
+  deploy-production:
+    needs: build-test
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Deploy to Environment
+        run: echo "Deploying to production environment"
+
+
+
+                

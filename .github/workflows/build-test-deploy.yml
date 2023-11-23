@@ -32,16 +32,16 @@ jobs:
       - name: Run Tests
         run: python -m unittest discover tests
 
-  deploy:
+  deploy-staging:
     needs: build-test
     runs-on: ubuntu-latest
-    environment: production
+    environment: staging
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
       - name: Deploy to Environment
-        run: echo "Deploying to ${{ env }} environment"
+        run: echo "Deploying to staging environment"
 
 
