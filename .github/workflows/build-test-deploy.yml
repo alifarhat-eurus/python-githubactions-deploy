@@ -6,6 +6,8 @@ on:
       - main
   workflow_dispatch:
 
+  
+
 jobs:
   build-test:
     runs-on: ubuntu-latest
@@ -13,11 +15,7 @@ jobs:
     strategy:
       matrix:
         python-version: [3.7, 3.8, 3.9]
-        include:
-          - python-version: 3.8
-            environment: development
-          - python-version: 3.9
-            environment: production
+   
 
     steps:
       - name: Checkout Repository
@@ -38,18 +36,12 @@ jobs:
     needs: build-test
     runs-on: ubuntu-latest
     environment: production
-    
-
-    strategy:
-      matrix:
-        environment: [development, production]
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
       - name: Deploy to Environment
-        run: echo "Deploying to ${{ matrix.environment }} environment"
+        run: echo "Deploying to ${{ env }} environment"
 
-        #hello
 
