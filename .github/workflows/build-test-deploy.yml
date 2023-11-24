@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -37,5 +37,5 @@ jobs:
     uses: ./.github/workflows/deploy-workflow.yml
     with:
       environment: staging
-      
+
 
