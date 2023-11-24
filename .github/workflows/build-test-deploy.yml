@@ -34,14 +34,8 @@ jobs:
 
   deploy-staging:
     needs: build-test
-    runs-on: ubuntu-latest
-    environment: staging
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Deploy to Environment
-        run: echo "Deploying to staging environment"
-
+    uses: ./.github/workflows/deploy-workflow.yml
+    with:
+      environment: staging
+      
 

@@ -9,14 +9,9 @@ on:
 
 jobs:
     deploy-production:
-        runs-on: ubuntu-latest
-        environment: production
-        steps:
-            - name: Checkout Repository
-              uses: actions/checkout@v2
-      
-            - name: Deploy to Environment
-              run: echo "Deploying to production environment"
+        uses: ./.github/workflows/deploy-workflow.yml
+        with:
+          environment: production
       
           
 
