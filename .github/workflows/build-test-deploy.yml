@@ -31,12 +31,14 @@ jobs:
 
       - name: Run Tests
         run: python -m unittest discover tests
+        with:
+          environment: staging
 
   deploy-staging:
     needs: build-test
     uses: ./.github/workflows/deploy-workflow.yml
     with:
       environment: staging
-      
+
 
 
