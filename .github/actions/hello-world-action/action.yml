@@ -1,0 +1,12 @@
+# .github/actions/hello-world-action/action.yml
+name: 'Hello World Action'
+description: 'Prints Hello World'
+author: 'Your Name'
+inputs:
+  who-to-greet: 
+    description: 'Who to greet'
+    required: true
+    default: 'World'
+runs:
+  using: 'shell'
+  command: './hello-world.sh ${{ inputs.who-to-greet }}'
