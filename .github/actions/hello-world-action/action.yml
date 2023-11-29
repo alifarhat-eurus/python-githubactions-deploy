@@ -10,5 +10,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: hello-world.sh ${{ inputs.who-to-greet }}
+    - run: sh hello-world.sh ${{ inputs.who-to-greet }}
       shell: bash
