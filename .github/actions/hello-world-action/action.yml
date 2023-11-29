@@ -10,5 +10,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: hello-world.sh
+    - run: sh hello-world.sh
       shell: bash
