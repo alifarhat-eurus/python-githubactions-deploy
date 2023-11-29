@@ -29,21 +29,6 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
 
-      - name: Generate Token
-        id: generate_token
-        uses: tibdex/github-app-token@v1
-        with:
-          app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.APP_SECRET }}
-
-      - name: Approve step
-        uses: trstringer/manual-approval@v1.7.0
-        with:
-          approvers: alifarhat-eurus
-          secret: ${{ steps.generate_token.outputs.token }}
-          issue-title: Approve Run Test
-
-
       - name: Run Tests
         run: python -m unittest discover tests
 
