@@ -14,5 +14,5 @@ runs:
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash
 
-    - run: sh hello-world.sh ${{ inputs.who-to-greet }}
+    - run: hello-world.sh ${{ inputs.who-to-greet }}
       shell: bash
