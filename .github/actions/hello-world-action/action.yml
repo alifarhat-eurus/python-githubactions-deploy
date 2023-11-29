@@ -9,7 +9,6 @@ inputs:
     default: 'World'
 runs:
   using: "composite"
-
   steps:
     - run: hello-world.sh ${{ inputs.who-to-greet }}
       shell: bash
