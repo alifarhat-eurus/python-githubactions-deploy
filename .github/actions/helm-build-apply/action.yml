@@ -15,4 +15,5 @@ runs:
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash
 
-    - run: helm-build-apply.sh ${{ inputs.application }}  
+    - run: helm-build-apply.sh ${{ inputs.application }}
+      shell: bash
