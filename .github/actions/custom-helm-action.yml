@@ -1,0 +1,24 @@
+# .github/actions/custom-helm-action.yml
+name: 'Custom Helm Action'
+description: 'Install, Init, diff, job summary'
+
+inputs:
+  application:
+    description: 'name of application like loki.yaml'
+    required: true
+outputs:
+  helm-apply-required:
+    description: 'either true or false'
+    value: ${{ steps.custom-helm-action.GITHUB_OUTPUT }}    
+
+
+runs:
+  using: composite
+  steps:
+
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
+
+    - id: 'custom-helm-action'
+      run: custom-helm-action.sh ${{ inputs.application }}
+      shell: bash

@@ -1,0 +1,27 @@
+name: Lower Infra Deployment
+on:
+  push:
+    branches:
+      - main
+      
+permissions: write-all
+
+jobs:
+  loki:
+    name: "Loki"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - id: 'custom-helm'
+        name: helmfile initialization
+        uses: ./.github/actions/custom-helm-action.yml
+        with:
+            application: loki.yaml
+
+      - name: helm build and apply
+        if: ${{ steps.custom-helm.outputs.helm_apply_required == 'true'}}
+        uses: ./.github/actions/helm-build-apply.yml
+        with:
+            application: loki.yaml
