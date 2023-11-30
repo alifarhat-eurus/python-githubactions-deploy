@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      
+
 permissions: write-all
 
 jobs:
@@ -16,12 +16,12 @@ jobs:
 
       - id: 'custom-helm'
         name: helmfile initialization
-        uses: ./.github/actions/custom-helm-action.yml
+        uses: ./.github/actions/custom-helm-action
         with:
             application: loki.yaml
 
       - name: helm build and apply
         if: ${{ steps.custom-helm.outputs.helm_apply_required == 'true'}}
-        uses: ./.github/actions/helm-build-apply.yml
+        uses: ./.github/actions/helm-build-apply
         with:
             application: loki.yaml
