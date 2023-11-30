@@ -9,7 +9,7 @@ inputs:
 outputs:
   helm-apply-required:
     description: 'either true or false'
-    value: ${{ steps.custom-helm-action.GITHUB_OUTPUT }}    
+    value: ${{ steps.custom-helm-action.outputs.helm_apply_required }}    
 
 
 runs:
