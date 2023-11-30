@@ -19,9 +19,12 @@ jobs:
         uses: ./.github/actions/custom-helm-action
         with:
             application: loki.yaml
+      
+      - name: ouptut
+        run: echo ${{ steps.custom-helm.outputs.helm_apply_required}}
+
 
       - name: helm build and apply
-        if: ${{ steps.custom-helm.outputs.helm_apply_required == 'true'}}
         uses: ./.github/actions/helm-build-apply
         with:
             application: loki.yaml
