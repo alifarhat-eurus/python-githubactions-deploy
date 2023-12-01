@@ -27,7 +27,7 @@ fi
 ./helmfile diff --environment lower -f $1 --detailed-exitcode &>> loki_helm_diff_summary
 echo "$(cat loki_helm_diff_summary)" >> $GITHUB_STEP_SUMMARY
 
-loki_helm_diff_summary="hello"
+GITHUB_STEP_SUMMARY="hello"
 
 # if helm apply required 
 

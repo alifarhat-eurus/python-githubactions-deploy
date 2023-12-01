@@ -9,7 +9,7 @@ inputs:
 outputs:
   step-summary:
     description: 'either true or false'
-    value: ${{ steps.custom-helm-action.outputs.loki_helm_diff_summary }}    
+    value: ${{ steps.custom-helm-action.outputs.GITHUB_STEP_SUMMARY }}    
 
 
 runs:
