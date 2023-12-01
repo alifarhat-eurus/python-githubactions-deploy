@@ -8,8 +8,8 @@ inputs:
     required: true
 outputs:
   step-summary:
-    description: 'either true or false'
-    value: ${{ steps.custom-helm-action.outputs.diff-summary }}   
+    description: 'Step Summary'
+    value: ${{ steps.custom-helm-action.outputs.app }}   
 
 
 runs:
