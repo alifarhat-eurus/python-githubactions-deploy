@@ -9,7 +9,7 @@ tar -xzvf helmfile_0.159.0_linux_amd64.tar.gz
 ./helmfile init --force
 
 set +e ./helmfile diff --environment lower -f $app --detailed-exitcode
-exit_code=#$(echo $?)
+exit_code=$(echo $?)
 echo "----exit_code-----"
 echo $exit_code
 set -e 
