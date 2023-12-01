@@ -16,7 +16,7 @@ if [[ $exit_code -eq 2 || $exit_code -eq 130 ]]; then
     echo "Changes dectected in helm diff"
 
     ./helmfile diff --environment lower -f $1 --detailed-exitcode &>> loki_helm_diff_summary
-    echo "$(cat loki_helm_diff_summary)" >> $GITHUB_STEP_SUMMARY
+    echo "diff-summary=$(cat loki_helm_diff_summary)" >> $GITHUB_STEP_SUMMARY
 
     echo "Building helm .... "
     ./helmfile build --environment lower -f $1
@@ -29,14 +29,14 @@ elif [[ $exit_code -eq 1 ]]; then
     echo "Helm diff resulted in error with exit code 1"
 
     ./helmfile diff --environment lower -f $1 --detailed-exitcode &>> loki_helm_diff_summary
-    echo "$(cat loki_helm_diff_summary)" >> $GITHUB_STEP_SUMMARY
+    echo "diff-summary=$(cat loki_helm_diff_summary)" >> $GITHUB_STEP_SUMMARY
 
     exit 1
 else
     echo "No changes detected in helm diff"
 
     ./helmfile diff --environment lower -f $1 --detailed-exitcode &>> loki_helm_diff_summary
-    echo "$(cat loki_helm_diff_summary)" >> $GITHUB_STEP_SUMMARY
+    echo "diff-summary=$(cat loki_helm_diff_summary)" >> $GITHUB_STEP_SUMMARY
 
     exit 0
 fi
