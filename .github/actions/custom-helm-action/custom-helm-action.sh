@@ -1,5 +1,6 @@
 #!/bin/bash
 app=$1
+echo "app is" $app
 cd helm/helmfile.d
 wget https://github.com/helmfile/helmfile/releases/download/v0.159.0/helmfile_0.159.0_linux_amd64.tar.gz
 tar -xzvf helmfile_0.159.0_linux_amd64.tar.gz
