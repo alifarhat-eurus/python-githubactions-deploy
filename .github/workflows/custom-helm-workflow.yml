@@ -21,10 +21,4 @@ jobs:
             application: loki.yaml
       
       - name: ouptut
-        run: echo ${{ steps.custom-helm.outputs.helm_apply_required }}
-
-
-      - name: helm build and apply
-        uses: ./.github/actions/helm-build-apply
-        with:
-            application: loki.yaml
+        run: echo ${{ steps.custom-helm.outputs.step-summary }}

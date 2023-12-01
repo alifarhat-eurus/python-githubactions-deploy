@@ -7,9 +7,9 @@ inputs:
     description: 'name of application like loki.yaml'
     required: true
 outputs:
-  helm-apply-required:
+  step-summary:
     description: 'either true or false'
-    value: ${{ steps.custom-helm-action.outputs.helm_apply_required }}    
+    value: ${{ steps.custom-helm-action.outputs.loki_helm_diff_summary }}    
 
 
 runs:
