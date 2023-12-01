@@ -7,8 +7,7 @@ tar -xzvf helmfile_0.159.0_linux_amd64.tar.gz
 ./helmfile init --force
 
 set +e ./helmfile diff --environment lower -f $1 --detailed-exitcode
-exit_code=2
-#$(echo $?)
+exit_code=#$(echo $?)
 echo "----exit_code-----"
 echo $exit_code
 set -e 
@@ -41,20 +40,3 @@ else
 
     exit 0
 fi
-
-# ./helmfile diff --environment lower -f $1 --detailed-exitcode &>> loki_helm_diff_summary
-# echo "$(cat loki_helm_diff_summary)" >> $GITHUB_STEP_SUMMARY
-
-# GITHUB_STEP_SUMMARY="hello"
-
-# # if helm apply required 
-
-# if [[ $helm_apply_required -eq true]]; then
-# cd helm/helmfile.d
-
-# # run build
-# ./helmfile build --environment lower -f $1
-
-# # apply
-# ./helmfile apply --environment lower -f $1
-# fi
