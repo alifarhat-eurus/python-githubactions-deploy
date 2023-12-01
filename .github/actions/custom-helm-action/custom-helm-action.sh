@@ -15,28 +15,46 @@ set -e
 if [[ $exit_code -eq 2 || $exit_code -eq 130 ]]; then
     echo "helm_apply_required=true" >> "$GITHUB_OUTPUT"
     echo "Changes dectected in helm diff"
+
+    ./helmfile diff --environment lower -f $1 --detailed-exitcode &>> loki_helm_diff_summary
+    echo "$(cat loki_helm_diff_summary)" >> $GITHUB_STEP_SUMMARY
+
+    echo "Building helm .... "
+    ./helmfile build --environment lower -f $1
+
+    echo "Apply helm .... "
+    ./helmfile apply --environment lower -f $1
+    
     exit 0
 elif [[ $exit_code -eq 1 ]]; then
     echo "Helm diff resulted in error with exit code 1"
+
+    ./helmfile diff --environment lower -f $1 --detailed-exitcode &>> loki_helm_diff_summary
+    echo "$(cat loki_helm_diff_summary)" >> $GITHUB_STEP_SUMMARY
+
     exit 1
 else
     echo "No changes detected in helm diff"
+
+    ./helmfile diff --environment lower -f $1 --detailed-exitcode &>> loki_helm_diff_summary
+    echo "$(cat loki_helm_diff_summary)" >> $GITHUB_STEP_SUMMARY
+
     exit 0
 fi
 
-./helmfile diff --environment lower -f $1 --detailed-exitcode &>> loki_helm_diff_summary
-echo "$(cat loki_helm_diff_summary)" >> $GITHUB_STEP_SUMMARY
+# ./helmfile diff --environment lower -f $1 --detailed-exitcode &>> loki_helm_diff_summary
+# echo "$(cat loki_helm_diff_summary)" >> $GITHUB_STEP_SUMMARY
 
-GITHUB_STEP_SUMMARY="hello"
+# GITHUB_STEP_SUMMARY="hello"
 
-# if helm apply required 
+# # if helm apply required 
 
-if [[ $helm_apply_required -eq true]]; then
-cd helm/helmfile.d
+# if [[ $helm_apply_required -eq true]]; then
+# cd helm/helmfile.d
 
-# run build
-./helmfile build --environment lower -f $1
+# # run build
+# ./helmfile build --environment lower -f $1
 
-# apply
-./helmfile apply --environment lower -f $1
-fi
+# # apply
+# ./helmfile apply --environment lower -f $1
+# fi
